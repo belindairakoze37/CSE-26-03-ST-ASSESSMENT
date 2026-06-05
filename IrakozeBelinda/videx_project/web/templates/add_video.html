@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/add_video.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="upload-page">
+    <h2 class="upload-title">Upload your video</h2>
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="field-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="d-flex flex-wrap form-row-gap">
+            <div class="left-col me-3">
+                <div class="mb-3">
+                    {{ form.title }}
+                    {% for error in form.title.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.description }}
+                    {% for error in form.description.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.video_quality }}
+                    {% for error in form.video_quality.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3">
+                    {{ form.date_of_publishing }}
+                    {% for error in form.date_of_publishing.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+               <a href="{% url 'video_list' %}" class="btn btn-secondary">
+    Back to Videos
+</a>
+            </div>
+
+            <div class="right-col">
+                <div class="mb-3 upload-box{% if form.video_file.errors %} error{% endif %}">
+                    <label class="upload-label w-100 h-100 d-flex align-items-center justify-content-center">
+                        <div class="text-center">
+                             <div class="upload-icon">☁️</div>
+                            <div class="upload-icon">&#8682;</div>
+                            <div>Upload video</div>
+                        </div>
+                        {{ form.video_file }}
+                    </label>
+                    {% for error in form.video_file.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-3 upload-box dashed{% if form.thumbnail.errors %} error{% endif %}">
+                    <label class="upload-label w-100 h-100 d-flex align-items-center justify-content-center">
+                        <div class="text-center">
+                            
+                             <div class="upload-icon">☁️</div>
+                             <div class="upload-icon">&#8682;</div>
+                    <div class="upload-text">Upload video</div>
+                            <div>Upload Thumbnail</div>
+                        </div>
+                        {{ form.thumbnail }}
+                    </label>
+                    {% for error in form.thumbnail.errors %}
+                        <div class="field-error">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-2">
+                    <button type="submit" class="upload-button">UPLOAD</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+...
+</div> <!-- end of upload-page -->
+
+<script>
+  // Video preview
+  document.getElementById("id_video_file").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      let preview = document.getElementById("videoPreview");
+      if (!preview) {
+        preview = document.createElement("video");
+        preview.id = "videoPreview";
+        preview.controls = true;
+        preview.width = 300;
+        event.target.parentNode.appendChild(preview);
+      }
+      preview.src = url;
+    }
+  });
+
+  // Thumbnail preview
+  document.getElementById("id_thumbnail").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      let preview = document.getElementById("thumbPreview");
+      if (!preview) {
+        preview = document.createElement("img");
+        preview.id = "thumbPreview";
+        preview.width = 150;
+        event.target.parentNode.appendChild(preview);
+      }
+      preview.src = url;
+    }
+  });
+</script>
+
+
+{% endblock %}

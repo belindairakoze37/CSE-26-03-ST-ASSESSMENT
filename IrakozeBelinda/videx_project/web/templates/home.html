@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+{% endblock %}
+{% block content %} 
+  <div class="landing-container">
+    <div class="brand">
+    
+            </div>
+   <a href="{% url 'video_list' %}"><button class="join-btn">Join</button></a>
+  </div>
+{% endblock %}
+

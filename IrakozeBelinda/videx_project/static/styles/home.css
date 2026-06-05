@@ -1,0 +1,49 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+}
+
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1{
+  color: #e50914;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.brand {
+  width: 240px;
+  height: 240px;
+  background-image: url('../images/videx_logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 0px;
+}
+
+
+.join-btn {
+  color:#e50914;
+  border: 1px solid #e50914;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.join-btn:hover {
+  background-color: #b20710;
+}
