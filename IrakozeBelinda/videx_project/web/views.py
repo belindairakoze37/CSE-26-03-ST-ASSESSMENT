@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import VideoForm
 from .models import Video
 from django.contrib import messages as message
@@ -18,7 +18,7 @@ def add_video(request):
         if form.is_valid():
             form.save()
             message.success(request, 'Video added successfully!')
-            
+            return redirect('add_video')
         else:
             message.error(request, 'Please fix the errors below and re-upload the files.')
 

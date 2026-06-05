@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}{% endblock %}
+{% block title %}Videx{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 {% endblock %}
 {% block content %} 
   <div class="landing-container">
-    <div class="brand">
-    
-            </div>
-   <a href="{% url 'video_list' %}"><button class="join-btn">Join</button></a>
+    <div class="hero-card">
+      <div class="brand-icon">
+        <div class="play-circle">
+          <i class="fa-solid fa-play"></i>
+        </div>
+        <span class="brand-text">Videx</span>
+      </div>
+      <a href="{% url 'video_list' %}" class="join-btn">JOIN</a>
+    </div>
   </div>
 {% endblock %}
 
