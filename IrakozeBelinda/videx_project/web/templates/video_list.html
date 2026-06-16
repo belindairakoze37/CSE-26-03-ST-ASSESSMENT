@@ -24,19 +24,21 @@
 
     <section class="video-grid">
         {% for video in videos %}
-        <article class="video-card">
-            <div class="thumbnail-wrap">
-                <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="thumbnail-img">
-                <div class="play-overlay">
-                    <span class="play-icon">▶</span>
+        <a href="{% url 'video_detail' video.id %}" class="video-card-link" style="text-decoration: none; color: inherit;">
+            <article class="video-card">
+                <div class="thumbnail-wrap">
+                    <img src="{{ video.thumbnail.url }}" alt="{{ video.title }}" class="thumbnail-img">
+                    <div class="play-overlay">
+                        <span class="play-icon">▶</span>
+                    </div>
                 </div>
-            </div>
-            <div class="card-content">
-                <h3>{{ video.title }}</h3>
-                <p class="video-meta">{{ video.video_quality }} • {{ video.date_of_publishing }}</p>
-                <p class="video-description">{{ video.description|default:'No description available.' }}</p>
-            </div>
-        </article>
+                <div class="card-content">
+                    <h3>{{ video.title }}</h3>
+                    <p class="video-meta">{{ video.video_quality }} • {{ video.date_of_publishing }}</p>
+                    <p class="video-description">{{ video.description|default:'No description available.' }}</p>
+                </div>
+            </article>
+        </a>
         {% empty %}
         <p class="empty-message">No videos have been uploaded yet.</p>
         {% endfor %}

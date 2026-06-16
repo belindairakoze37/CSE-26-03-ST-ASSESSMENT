@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import VideoForm
 from .models import Video
 from django.contrib import messages as message
@@ -11,6 +11,12 @@ def home(request):
 def video_list(request):
     videos = Video.objects.all()
     return render(request, 'video_list.html', {'videos': videos})
+
+
+def video_detail(request, video_id):
+    video = get_object_or_404(Video, pk=video_id)
+    return render(request, 'video_detail.html', {'video': video})
+
 
 def add_video(request):
     form = VideoForm(request.POST or None, request.FILES or None)

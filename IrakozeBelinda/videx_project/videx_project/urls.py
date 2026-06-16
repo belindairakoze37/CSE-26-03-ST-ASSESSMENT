@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('video_list/', views.video_list, name="video_list"),
     path('video_list/add_video/', views.add_video, name="add_video"),
+    path('video_list/<int:video_id>/', views.video_detail, name="video_detail"),
 ]
 
 if settings.DEBUG:
